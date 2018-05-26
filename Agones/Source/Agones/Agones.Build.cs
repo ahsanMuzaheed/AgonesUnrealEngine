@@ -37,6 +37,7 @@ public class Agones : ModuleRules
         PrivateDependencyModuleNames.AddRange(
             new string[]
             {
+				"grpc"
             }
             );
 
@@ -47,33 +48,28 @@ public class Agones : ModuleRules
             }
             );
 
-        string BaseDirectory = System.IO.Path.GetFullPath(System.IO.Path.Combine(ModuleDirectory, "..", ".."));
-        string SDKDirectory = System.IO.Path.Combine(BaseDirectory, "ThirdParty", Target.Platform.ToString());
 
-        PublicDefinitions.Add("GPR_FORBID_UNREACHABLE_CODE=0");
-        PublicDefinitions.Add("GOOGLE_PROTOBUF_NO_RTTI=0");
-        PublicDefinitions.Add("PLATFORM_EXCEPTIONS_DISABLED=1");
-        
+
         if (Target.Type == TargetRules.TargetType.Server)
         {
             if (Target.Platform == UnrealTargetPlatform.Linux)
             {
-                PublicDefinitions.Add("WITH_AGONES=1");
+                string BaseDirectory = System.IO.Path.GetFullPath(System.IO.Path.Combine(ModuleDirectory, "..", ".."));
+                string SDKDirectory = System.IO.Path.Combine(BaseDirectory, "ThirdParty", Target.Platform.ToString());
+
+                PublicDefinitions.Add("GPR_FORBID_UNREACHABLE_CODE=0");
+                PublicDefinitions.Add("GOOGLE_PROTOBUF_NO_RTTI=0");
+
                 SDKDirectory = System.IO.Path.Combine(SDKDirectory, "x64");
                 string SDKLib = System.IO.Path.Combine(SDKDirectory, "libagonessdk.so");
-                
+
                 PublicLibraryPaths.Add(SDKDirectory);
-                //PublicLibraryPaths.Add("../../ThirdParty/Linux/x64");
-                //PublicAdditionalLibraries.Add("../../ThirdParty/Linux/x64/libagonessdk.a");
-                //PublicAdditionalLibraries.Add("../../ThirdParty/Linux/x64/libgrpc.a");
-                //PublicAdditionalLibraries.Add("../../ThirdParty/Linux/x64/libprotobuf.a");
-                PublicAdditionalLibraries.Add(SDKLib);    
-                // RuntimeDependencies.Add(SDKLib);
+                PublicAdditionalLibraries.Add(SDKLib);
             }
         }
         else
         {
-            PublicDefinitions.Add("WITH_AGONES=0");
+           
         }
     }
 }

@@ -1,0 +1,28 @@
+{
+	"FileVersion": 3,
+	"Version": 3,
+	"VersionName": "0.1",
+	"FriendlyName": "grpc",
+	"Description": "",
+	"Category": "Other",
+	"CreatedBy": "",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"EnabledByDefault": true,
+	"SupportedTargetPlatforms": [
+		"Linux",
+		"Win64"
+	],
+	"CanContainContent": false,
+	"IsBetaVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "grpc",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault"
+		}
+	]
+}

@@ -23,5 +23,11 @@
 			"Type": "Runtime",
 			"LoadingPhase": "PreDefault"
 		}
-	]
+	],
+	"Plugins": [
+    {
+      "Name": "grpc",
+      "Enabled": true
+    }
+  ]
 }
